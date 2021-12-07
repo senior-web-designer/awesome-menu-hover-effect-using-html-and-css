@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CSS  animated linemenu icon</title>
+<style type="text/css">
+body {
+  min-height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.linemenu {
+  padding: 15px;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  background-color: transparent;
+}
+.linemenu__container {
+  width: 36px;
+  height: 24px;
+  position: relative;
+}
+.linemenu:hover .linemenu__inner {
+  transform: translate(-51px, 50%);
+  opacity: 0;
+}
+.linemenu:hover .linemenu__inner::before, .linemenu:hover .linemenu__inner::after {
+  transform: translate(102px, 0);
+  opacity: 0;
+}
+.linemenu.is-active .linemenu__inner {
+  display: none;
+}
+.linemenu__inner {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.4s;
+  top: 50%;
+  transform: translate(5px, -50%);
+  opacity: 1;
+}
+.linemenu__inner::before, .linemenu__inner::after {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.4s;
+  content: "";
+  opacity: 1;
+  transform: translate(-5px, 0);
+}
+.linemenu__inner::before {
+  top: -13px;
+}
+.linemenu__inner::after {
+  top: 13px;
+}
+.linemenu:hover .linemenu__hidden {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.linemenu:hover .linemenu__hidden::before, .linemenu:hover .linemenu__hidden::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.linemenu.is-active .linemenu__hidden {
+  opacity: 1;
+  transform: rotate(45deg);
+}
+.linemenu.is-active .linemenu__hidden::before {
+  transform: translate(0, 13px) rotate(90deg);
+  transform-origin: center;
+}
+.linemenu.is-active .linemenu__hidden::after {
+  transform-origin: center;
+  transform: translate(0, -13px) rotate(0);
+}
+.linemenu__hidden {
+  opacity: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.4s;
+  background-color: red;
+  top: 50%;
+  transform: translate(51px, -50%);
+}
+.linemenu__hidden::before, .linemenu__hidden::after {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.4s;
+  background-color: red;
+  content: "";
+  transform: translate(102px, 0);
+}
+.linemenu__hidden::before {
+  top: -13px;
+}
+.linemenu__hidden::after {
+  top: 13px;
+}</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="linemenu">
+    <div class="linemenu__container">
+      <div class="linemenu__inner"></div>
+      <div class="linemenu__hidden"></div>
+    </div>
+  </div>
+<!-- partial -->
+  <script>
+    document.querySelector('.linemenu').addEventListener('click', (e) => {
+      e.currentTarget.classList.toggle('is-active');
+    })
+  </script>
+
+</body>
+</html>
